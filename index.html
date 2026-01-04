@@ -5,11 +5,17 @@
 <title>همیار | همراه سالمندان</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap" rel="stylesheet">
-
 <style>
-body{margin:0;font-family:'Vazirmatn',sans-serif;background:#fdfdfb;color:#2c2c2c;line-height:1.9}
+body{
+margin:0;
+font-family:'Vazirmatn',sans-serif;
+background:#fdfdfb;
+color:#2c2c2c;
+line-height:1.9
+}
 a{text-decoration:none;color:inherit}
 
+/* نوار مشترک بالا */
 header{
 background:linear-gradient(135deg,#56ccf2,#6fcf97);
 color:#fff;
@@ -17,16 +23,27 @@ padding:20px 40px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-flex-wrap:wrap
+flex-wrap:wrap;
+position:relative;
+z-index:10; /* ✔️ اصلاح مهم */
 }
-header h1{margin:0;font-size:28px;font-weight:800}
-nav a{margin-right:20px;color:#fff;font-weight:600;font-size:16px;text-decoration:none}
+header h1{
+margin:0;
+font-size:28px;
+font-weight:800
+}
+nav a{
+margin-right:20px;
+color:#fff;
+font-weight:600;
+font-size:16px;
+text-decoration:none;
+}
 nav a:hover{text-decoration:underline}
 
 /* نوار اطلاع رسانی */
 .update-banner{
 background:linear-gradient(135deg,#eaf6ef,#fff3e0);
-color:#fff;
 padding:14px 20px;
 display:flex;
 justify-content:space-between;
@@ -35,16 +52,12 @@ gap:15px;
 font-size:15px;
 font-weight:600;
 position:relative;
-transform:translateY(-100%);
-opacity:0;
-transition:transform 0.6s ease, opacity 0.6s ease;
+z-index:5; /* ✔️ اصلاح مهم */
 }
+.update-banner span{
+color:#ffffff;
 
-.update-banner.show{
-transform:translateY(0);
-opacity:1;
 }
-
 .close-banner{
 background:linear-gradient(135deg,#6fcf97,#f2994a);
 color:#fff;
@@ -57,14 +70,29 @@ font-weight:600;
 cursor:pointer;
 transition:0.3s;
 }
-.close-banner:hover{transform:scale(1.05)}
+.close-banner:hover{
+transform:scale(1.05);
+}
 
 /* Hero */
-.hero{display:flex;align-items:center;padding:50px 40px;gap:30px;flex-wrap:wrap}
+.hero{
+display:flex;
+align-items:center;
+padding:50px 40px;
+gap:30px;
+flex-wrap:wrap
+}
 .hero-text{flex:1;min-width:300px}
-.hero-text h2{font-size:36px;font-weight:800;margin-bottom:20px}
-.hero-text p{font-size:18px;max-width:500px;margin-bottom:20px}
-
+.hero-text h2{
+font-size:36px;
+font-weight:800;
+margin-bottom:20px
+}
+.hero-text p{
+font-size:18px;
+max-width:500px;
+margin-bottom:20px
+}
 .hero-text .orange-btn{
 margin-right:10px;
 padding:12px 25px;
@@ -74,10 +102,12 @@ color:#fff;
 border:none;
 border-radius:35px;
 cursor:pointer;
-transition:0.3s
+transition:0.3s;
+display:inline-block
 }
-.hero-text .orange-btn:hover{transform:scale(1.05)}
-
+.hero-text .orange-btn:hover{
+transform:scale(1.05)
+}
 .hero-img{flex:1;min-width:300px}
 .hero-img img{
 width:100%;
@@ -85,9 +115,13 @@ border-radius:30px;
 box-shadow:0 15px 30px rgba(0,0,0,0.15)
 }
 
+/* کارت‌ها */
 section{padding:50px 40px}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:25px}
-
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px
+}
 .card{
 background:#fff;
 padding:30px;
@@ -97,7 +131,9 @@ transition:0.3s;
 cursor:pointer;
 text-align:center
 }
-.card:hover{transform:translateY(-6px)}
+.card:hover{
+transform:translateY(-6px)
+}
 /* ریسپانسیو برای موبایل */
 @media (max-width: 768px) {
 
@@ -132,7 +168,8 @@ font-size:14px;
 
 <header>
 <h1>همیار</h1>
-<nav>
+<nav id="mainNav">
+
 <a href="index.html">خانه</a>
 <a href="health.html">سلامت</a>
 <a href="memory.html">ذهن و حافظه</a>
@@ -146,7 +183,9 @@ font-size:14px;
 
 <!-- نوار اطلاع رسانی -->
 <div class="update-banner" id="updateBanner">
-<span>💌 همراه عزیز، محتوای هر بخش همیار هر هفته شنبه صبح ساعت ۸ بروزرسانی می‌شود.</span>
+<span>
+💌 همراه عزیز، محتوای هر بخش همیار هر هفته شنبه صبح ساعت ۸ بروزرسانی می‌شود.
+</span>
 <button class="close-banner" onclick="hideBanner()">متوجه شدم</button>
 </div>
 
@@ -167,18 +206,22 @@ font-size:14px;
 <h4>سلامت و تحرک</h4>
 <p>تمرین‌های ساده، ارتباط با مربی و پیگیری وضعیت جسمی سالمندان.</p>
 </div>
+
 <div class="card" style="background:#d6ebff" onclick="location.href='memory.html'">
 <h4>ذهن و حافظه</h4>
 <p>بازی‌ها و تمرین‌های علمی برای تقویت حافظه و تمرکز.</p>
 </div>
+
 <div class="card" style="background:#ffdfb2" onclick="location.href='fun.html'">
 <h4>سرگرمی سالم</h4>
 <p>فعالیت‌های شاد، موسیقی و محتوای متناسب با روحیه سالمندان.</p>
 </div>
+
 <div class="card" style="background:#d6c1ff" onclick="location.href='books.html'">
 <h4>کتاب‌خوان</h4>
 <p>مطالعه کتاب‌ها و منابع مفید برای سالمندان.</p>
 </div>
+
 <div class="card" style="background:#c8f0d3" onclick="location.href='contact.html'">
 <h4>ارتباط انسانی</h4>
 <p>ایجاد حس تعلق و ارتباط با مربیان و همراهان همیار.</p>
@@ -187,16 +230,16 @@ font-size:14px;
 
 <script>
 function hideBanner(){
-const banner=document.getElementById('updateBanner');
-banner.style.transform='translateY(-100%)';
-banner.style.opacity='0';
+const banner = document.getElementById('updateBanner');
+banner.style.opacity = '0';
+banner.style.transition = 'opacity 0.5s ease';
+setTimeout(()=>banner.style.display='none',500);
 localStorage.setItem('bannerHidden','true');
 }
 
 window.addEventListener('DOMContentLoaded',()=>{
-const banner=document.getElementById('updateBanner');
-if(localStorage.getItem('bannerHidden')!=='true'){
-setTimeout(()=>banner.classList.add('show'),300);
+if(localStorage.getItem('bannerHidden')==='true'){
+document.getElementById('updateBanner').style.display='none';
 }
 });
 </script>
