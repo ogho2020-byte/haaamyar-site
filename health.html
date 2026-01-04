@@ -99,6 +99,20 @@ object-fit:cover;
 border-radius:12px;
 }
 }
+/* کوچک‌ترین حالت کارت ویدیو برای موبایل */
+@media (max-width: 768px){
+#videos .card video {
+width: 120px; /* عرض */
+height: 80px; /* ارتفاع */
+object-fit: cover;
+border-radius: 8px;
+}
+
+#videos .card {
+min-width: 130px; /* خود کارت کمی بزرگ‌تر از ویدیو باشه */
+padding: 10px;
+}
+}
 </style>
 </head>
 <body>
@@ -357,6 +371,7 @@ chat.scrollTop=chat.scrollHeight;
 </body>
 
 </html>
+
 
 
 
