@@ -199,9 +199,15 @@ if(localStorage.getItem("v"+i)) d.classList.add("done");
 d.innerHTML=`
 <div class="circle">${i+1}</div>
 <h3>${v}</h3>
-<video controls onended="finishVideo(${i},this)">
+<video
+controls
+preload="none"
+playsinline
+webkit-playsinline
+onended="finishVideo(${i},this)"
+>
 <source src="assets/videos/${videoFiles[i]}" type="video/mp4">
-</video>`;
+</video>;
 videoBox.appendChild(d);
 });
 function finishVideo(i,el){
@@ -341,4 +347,5 @@ chat.scrollTop=chat.scrollHeight;
 </script>
 
 </body>
+
 </html>
