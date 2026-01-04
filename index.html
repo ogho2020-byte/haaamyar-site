@@ -25,7 +25,7 @@ justify-content:space-between;
 align-items:center;
 flex-wrap:wrap;
 position:relative;
-z-index:10; /* ✔️ اصلاح مهم */
+z-index:10;
 }
 header h1{
 margin:0;
@@ -52,11 +52,10 @@ gap:15px;
 font-size:15px;
 font-weight:600;
 position:relative;
-z-index:5; /* ✔️ اصلاح مهم */
+z-index:5;
 }
 .update-banner span{
 color:#ffffff;
-
 }
 .close-banner{
 background:linear-gradient(135deg,#6fcf97,#f2994a);
@@ -169,7 +168,6 @@ font-size:14px;
 <header>
 <h1>همیار</h1>
 <nav id="mainNav">
-
 <a href="index.html">خانه</a>
 <a href="health.html">سلامت</a>
 <a href="memory.html">ذهن و حافظه</a>
@@ -234,12 +232,16 @@ const banner = document.getElementById('updateBanner');
 banner.style.opacity = '0';
 banner.style.transition = 'opacity 0.5s ease';
 setTimeout(()=>banner.style.display='none',500);
-localStorage.setItem('bannerHidden','true');
+sessionStorage.setItem('bannerHiddenThisSession','true');
 }
 
 window.addEventListener('DOMContentLoaded',()=>{
-if(localStorage.getItem('bannerHidden')==='true'){
-document.getElementById('updateBanner').style.display='none';
+const banner = document.getElementById('updateBanner');
+if(sessionStorage.getItem('bannerHiddenThisSession')==='true'){
+banner.style.display='none';
+} else {
+banner.style.display='flex';
+banner.style.opacity = '1';
 }
 });
 </script>
