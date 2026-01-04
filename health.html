@@ -199,15 +199,10 @@ if(localStorage.getItem("v"+i)) d.classList.add("done");
 d.innerHTML=`
 <div class="circle">${i+1}</div>
 <h3>${v}</h3>
-<video
-controls
-preload="none"
-playsinline
-webkit-playsinline
-onended="finishVideo(${i},this)"
->
+<video controls playsinline webkit-playsinline>
 <source src="assets/videos/${videoFiles[i]}" type="video/mp4">
-</video>;
+مرورگر شما از ویدیو پشتیبانی نمی‌کند
+</video>
 videoBox.appendChild(d);
 });
 function finishVideo(i,el){
@@ -349,3 +344,4 @@ chat.scrollTop=chat.scrollHeight;
 </body>
 
 </html>
+
