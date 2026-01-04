@@ -17,34 +17,19 @@ nav a:hover, nav button:hover{text-decoration:underline}
 .section input{width:100%;padding:12px;margin:8px 0;border-radius:15px;border:1px solid #ccc;font-size:16px}
 .section button{background:#6fcf97;color:#fff;border:none;padding:12px 20px;border-radius:25px;margin-top:10px;cursor:pointer;width:100%;font-weight:600;transition:0.3s}
 .section button:hover{transform:scale(1.03)}
-#profileImg{width:120px;height:120px;border-radius:50%;display:block;margin:0 auto 15px;object-fit:cover;border:2px solid #6fcf97}
+#profileContainer{text-align:center;margin-bottom:15px}
+#profileImg{width:120px;height:120px;border-radius:50%;object-fit:cover;border:2px solid #6fcf97}
+#profileButtons{margin-top:10px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+#profileButtons button{padding:8px 16px;border-radius:20px;font-weight:600;font-size:14px}
 canvas{margin-top:25px}
 /* ریسپانسیو برای موبایل */
 @media (max-width: 768px) {
-
-header{
-padding:15px 20px;
-flex-direction:column;
-align-items:center;
-gap:10px;
-}
-
-header h1{
-font-size:22px;
-}
-
-nav{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:10px;
-}
-
-nav a{
-margin:0;
-font-size:14px;
-}
-
+header{padding:15px 20px;flex-direction:column;align-items:center;gap:10px}
+header h1{font-size:22px}
+nav{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+nav a{margin:0;font-size:14px}
+#profileImg{width:100px;height:100px}
+#profileButtons{flex-direction:column;gap:5px}
 }
 </style>
 </head>
@@ -60,7 +45,16 @@ font-size:14px;
 
 <div class="section">
 <h2>اطلاعات من</h2>
-<img id="profileImg" src="assets/images/default-user.png">
+
+<!-- آپلود عکس پروفایل -->
+<div id="profileContainer">
+<img id="profileImg" src="assets/images/default-user.png" alt="پروفایل">
+<div id="profileButtons">
+<input type="file" id="profileInput" accept="image/*">
+<button onclick="deletePhoto()">حذف عکس</button>
+</div>
+</div>
+
 <input type="text" id="name" placeholder="نام">
 <input type="text" id="family" placeholder="نام خانوادگی">
 <input type="number" id="age" placeholder="سن">
@@ -101,6 +95,28 @@ localStorage.setItem('userWeight',document.getElementById('weight').value);
 alert('اطلاعات ذخیره شد');
 }
 
+// مدیریت آپلود عکس پروفایل
+const profileInput = document.getElementById('profileInput');
+const profileImg = document.getElementById('profileImg');
+
+profileInput.addEventListener('change',(e)=>{
+const file = e.target.files[0];
+if(file){
+const reader = new FileReader();
+reader.onload = function(event){
+profileImg.src = event.target.result;
+localStorage.setItem('userImg', event.target.result); // ذخیره در localStorage
+}
+reader.readAsDataURL(file);
+}
+});
+
+// حذف عکس پروفایل
+function deletePhoto(){
+profileImg.src = 'assets/images/default-user.png';
+localStorage.removeItem('userImg');
+}
+
 // خروج از کاربری
 function logout(){
 localStorage.removeItem('userName');
@@ -109,7 +125,7 @@ localStorage.removeItem('userPhone');
 localStorage.removeItem('userAge');
 localStorage.removeItem('userHeight');
 localStorage.removeItem('userWeight');
-localStorage.removeItem('userImg');
+localStorage.removeItem('userImg'); // حذف عکس
 alert('شما از کاربری خارج شدید');
 window.location.href='index.html';
 }
