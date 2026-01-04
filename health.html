@@ -85,6 +85,13 @@ flex-shrink:0;
 scroll-snap-align:start;
 }
 }
+.card video{
+width:100%;
+aspect-ratio:16/9;
+object-fit:cover;
+border-radius:12px;
+background:#000;
+}
 </style>
 </head>
 <body>
@@ -187,43 +194,27 @@ color:#000;
 </div>
 </section>
 
-  <script>
-document.addEventListener("DOMContentLoaded", function(){
-
+<script>
 /* ویدئوها */
-const videos=[
-"تمرین اول","تمرین دوم","تمرین سوم","تمرین چهارم","تمرین پنجم",
-"تمرین ششم","تمرین هفتم","تمرین هشتم","تمرین نهم","تمرین دهم"
-];
-
-const videoFiles=[
-"exercise-one.mp4","exercise-two.mp4","exercise-three.mp4","exercise-four.mp4",
-"exercise-five.mp4","exercise-six.mp4","exercise-seven.mp4","exercise-eight.mp4",
-"exercise-nine.mp4","exercise-ten.mp4"
-];
-
+const videos=["تمرین اول","تمرین دوم","تمرین سوم","تمرین چهارم","تمرین پنجم","تمرین ششم","تمرین هفتم","تمرین هشتم","تمرین نهم","تمرین دهم"];
+const videoFiles=["exercise-one.mp4","exercise-two.mp4","exercise-three.mp4","exercise-four.mp4","exercise-five.mp4","exercise-six.mp4","exercise-seven.mp4","exercise-eight.mp4","exercise-nine.mp4","exercise-ten.mp4"];
 const videoBox=document.getElementById("videos");
-if(videoBox){
 videos.forEach((v,i)=>{
 let d=document.createElement("div");
 d.className="card";
 if(localStorage.getItem("v"+i)) d.classList.add("done");
-
 d.innerHTML=`
 <div class="circle">${i+1}</div>
 <h3>${v}</h3>
-<video controls playsinline webkit-playsinline onended="finishVideo(${i},this)">
+<video controls onended="finishVideo(${i},this)">
 <source src="assets/videos/${videoFiles[i]}" type="video/mp4">
-</video>
-`;
+</video>`;
 videoBox.appendChild(d);
 });
-}
-
-window.finishVideo=function(i,el){
+function finishVideo(i,el){
 localStorage.setItem("v"+i,1);
 el.parentElement.classList.add("done");
-};
+}
 
 /* تمرین پیشنهادی */
 const exercises=[
@@ -359,5 +350,6 @@ chat.scrollTop=chat.scrollHeight;
 </body>
 
 </html>
+
 
 
